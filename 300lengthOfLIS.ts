@@ -41,3 +41,35 @@ function lengthOfLIS1(nums) {
     return ans;
 }
 lengthOfLIS1([7,7,7,7,7,7,7])
+
+// 输出最长递增子序列的结果
+function resultOfLIS(nums){
+    const n = nums.length;
+    // dp[i] 表示以 nums[i] 结尾的最长递增子序列的长度
+    const dp = new Array(n).fill(1);
+    const prev = new Array(n).fill(-1); // 用于记录前一个元素的索引
+    let maxLength = 0;
+    let maxIndex = -1;
+
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < i; j++) {
+            if (nums[i] > nums[j] && dp[i] < dp[j] + 1) {
+                dp[i] = dp[j] + 1;
+                prev[i] = j; // 记录前一个元素的索引
+            }
+        }
+        if (dp[i] > maxLength) {
+            maxLength = dp[i];
+            maxIndex = i;
+        }
+    }
+
+    // 重建最长递增子序列
+    const lis = [];
+    while (maxIndex !== -1) {
+        lis.unshift(nums[maxIndex]);
+        maxIndex = prev[maxIndex];
+    }
+    return lis;
+}
+console.log(resultOfLIS([10, 9, 2, 5, 3, 7, 101, 18])); // 输出 [2, 3, 7, 101]

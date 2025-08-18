@@ -44,6 +44,7 @@ function flatten2(root) {
             const right = root.right;
             // 将right拼接到左子树最右边节点上
             cur.right = right;
+            root.right = root.left;
             root.left = null;
             // 更新root
             root = root.right;

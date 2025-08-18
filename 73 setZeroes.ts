@@ -48,6 +48,7 @@ function setZeroes(matrix) {
     }
     return matrix;
 }
+setZeroes([[0,1,2,0],[3,4,5,2],[1,3,1,5]])
 
 // 空间O(m+n)写法
 function setZeroes1(matrix) {

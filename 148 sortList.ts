@@ -1,4 +1,4 @@
-function ListNode(val, next) {
+function SortListListNode(val, next) {
     this.val = val === undefined ? 0 : val;
     this.next = next === undefined ? null : next;
 }
@@ -27,7 +27,7 @@ function sortList(head) {
         return slow;
     }
     function merge(head1, head2) {
-        const dummy = new ListNode(-1, null);
+        const dummy = new SortListListNode(-1, null);
         let cur = dummy;
         while (head1 !== null && head2 !== null) {
             if (head1.val <= head2.val) {
@@ -52,7 +52,7 @@ function sortList(head) {
 // 归并排序，自下向上
 function sortList1(head) {
     const len = getLinkLength(head);
-    const dummy = new ListNode(-1, head);
+    const dummy = new SortListListNode(-1, head);
     for (let step = 1; step < len; step *= 2) {
         let newListTail = dummy;
         let cur = dummy.next;
@@ -90,7 +90,7 @@ function sortList1(head) {
         return head2;
     }
     function merge(head1, head2){
-        const dummy = new ListNode(-1, null);
+        const dummy = new SortListListNode(-1, null);
         let cur = dummy;
         while (head1 !== null && head2 !== null) {
             if (head1.val <= head2.val) {
@@ -116,8 +116,8 @@ function sortList1(head) {
     }
 }
 
-const test3 = new ListNode(3, null);
-const test2 = new ListNode(1, test3);
-const test1 = new ListNode(2, test2);
-const test0 = new ListNode(4, test1);
+const test3 = new SortListListNode(3, null);
+const test2 = new SortListListNode(1, test3);
+const test1 = new SortListListNode(2, test2);
+const test0 = new SortListListNode(4, test1);
 console.log(sortList1(test0))
