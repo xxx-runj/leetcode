@@ -111,7 +111,7 @@ token是一种代表用户身份和权限的数字凭证，常用于网络应用
 
 ## 11. Express Koa
 Express 和 Koa 是 Node.js 生态里的 Web 框架，它们都是用来快速搭建 Web 服务器或 API 服务的。Koa 是 Express 团队推出的新一代框架。
-![这是图片](./Express%20VS%20Koa.png "Express VS Koa")
+![这是图片](./images/Express%20VS%20Koa.png "Express VS Koa")
 
 ## 12. 前端性能优化方案
 从 <font color=red>加载、渲染、运行时</font> 三个阶段
@@ -132,7 +132,7 @@ Express 和 Koa 是 Node.js 生态里的 Web 框架，它们都是用来快速�
 - 避免内存泄露（未清除的定时器和事件监听器、引用大数据的闭包、对废弃DOM的引用）
 
 ## 13. webworker VS serviceworker
-![这是图片](./webworker%20VS%20serviceworker.png "Webworker VS Serviceworker")
+![这是图片](./images/webworker%20VS%20serviceworker.png "Webworker VS Serviceworker")
 
 
 
