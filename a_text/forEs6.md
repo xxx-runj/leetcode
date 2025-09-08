@@ -69,5 +69,48 @@ JS是单线程的，同一时间只能执行一个任务。事件循环是JS处�
 应用场景：函数入参与返回值类型保持一致、泛型约束、泛型接口、泛型类
 
 ## 12. ts联合类型、交叉类型
-联合类型：｜ A或B，某个变量可以有多个类型
+联合类型：｜ A或B，某个变量可以有多个类型  
 交叉类型：& A且B，一个类型同时拥有多个类型的特性，如果属性冲突，会取交集
+```ts
+interface ClassA {
+    name: string
+    age: number
+    height: number
+}
+interface ClassB {
+    name: string
+    sex: string
+    height: string
+}
+// 交叉类型 &
+type User1 = ClassA & ClassB
+const user1: User1 = {
+    // ClassA  ClassB 的 name 属性类型一致
+    name: 'xxx',
+    age: 20,
+    sex: 'female',
+    // ClassA  ClassB 的 height 属性类型不一致，合并后变成 height: never
+    height: 180, // 报错，不能将类型“number”分配给类型“never”
+}
+
+// 联合类型 ｜
+type User2 = ClassA | ClassB
+// OK user2的类型为 ClassA 或 ClassB 都可，但属性不可混用
+const user2: User2 = {
+    name: 'xxx',
+    age: 20,
+    height: 180
+};
+```
+
+## 13. 实现ts的Pick、Omit
+```ts
+type Pick<T, K extends keyof T> = {
+    [P in K]: T[P]
+}
+// Omit更宽容，允许传入不属于 T 属性的键
+type Omit<T,K extends keyof any> = Pick<T, Exclude<keyof T, K>>
+```
+
+## 14. async await 的底层实现
+利用 generator 和 promise

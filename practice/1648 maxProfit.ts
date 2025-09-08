@@ -1,5 +1,5 @@
 // 销售价值减少的颜色球
-var maxProfit = function(inventory, orders) {
+function maxProfitK(inventory, orders) {
     let l = 0;
     let r = Math.max(...inventory);
     const mod = 10n ** 9n + 7n;
