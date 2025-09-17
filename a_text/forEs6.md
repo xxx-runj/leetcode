@@ -103,14 +103,64 @@ const user2: User2 = {
 };
 ```
 
-## 13. 实现ts的Pick、Omit
+## 13. 实现ts的Pick、Omit 或 自定义类型
 ```ts
 type Pick<T, K extends keyof T> = {
     [P in K]: T[P]
 }
 // Omit更宽容，允许传入不属于 T 属性的键
 type Omit<T,K extends keyof any> = Pick<T, Exclude<keyof T, K>>
+
+// 递归 Partial
+type DeepPartial<T> = {
+    [P of keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P]
+}
+
+// returnType
+type ReturnType<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : never
 ```
 
 ## 14. async await 的底层实现
 利用 generator 和 promise
+
+## 15. unknown any void never
+- unknown：可以接收任意值（赋值时不受限制），但不可以直接使用
+- any：既能存任何值，也能直接用，不做任何类型检查
+- void：表示没有返回值，或“不关心返回值”
+- never：表示不可能存在的类型，不可达
+
+## 16. interface 和 type 区别
+- interface：主要用于描述对象的结构，可以
+    - 继承（extends）
+    - 声明合并
+    - 可以用来约束类
+```ts
+// 声明合并后：User = { name: string; age: number }
+interface User { name: string }
+interface User { age: number }
+
+// 约束类
+interface Flyable {
+  fly(): void;
+}
+class Bird implements Flyable {
+  fly() { console.log("flying"); }
+}
+```
+- type：更通用，可以用来给任意类型起别名，
+    - 通过交叉类型（&）扩展
+    - 不可以声明合并
+    - 不可以用在 implements
+
+## 17. extends 的作用
+- 扩展
+- 对泛型进行约束
+- 条件判断 T extends U ? X : Y
+
+## 18. 类型断言 & 类型收缩/守卫
+- 类型断言 as
+- 类型守卫：通过代码逻辑将宽泛的类型收缩为更小的类型
+    - typeof 
+    - instanceof 
+    - 属性存在检查 in
+    - 字面量判断 ===

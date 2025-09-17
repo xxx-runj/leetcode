@@ -137,6 +137,12 @@ vite是一个前端构建工具，利用浏览器原生ESM支持，启动时按�
 - 路由懒加载、组件懒加载、按需引入UI库
 
 
+## 19. 如何优化vite构建打包速度
+- 代码处理（按需引入、动态import、tree-shaking）
+- 插件优化（开启esbuild压缩、通过optimizeDeps提前预构建依赖、利用缓存
+- 合理拆分chunk（把 node_modules 中的第三方库（React、Vue、Lodash 等）合并打包为 vendor chunk
+
+
 
 
 
